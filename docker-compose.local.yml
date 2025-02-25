@@ -1,0 +1,28 @@
+services:
+  app:
+    build:
+      dockerfile: local.Dockerfile
+    restart: unless-stopped
+    ports:
+      - ${APP_PORT}:8000
+    volumes:
+      - ./src:/var/www/html
+    networks:
+      - default
+  database:
+    image: mysql:lts
+    restart: unless-stopped
+    ports:
+      - ${MYSQL_PORT}:3306
+    environment:
+        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+        MYSQL_DATABASE: ${MYSQL_DATABASE}
+        MYSQL_USER: ${MYSQL_USER}
+        MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+        - ./docker/local/database/data:/var/lib/mysql
+    networks:
+      - default
+
+networks:
+  default:
