@@ -2,9 +2,9 @@
 
 namespace App\Services\DataProviders;
 
-use App\Contracts\DataProviders\CreditCardDataProvider;
+use App\Contracts\DataProviders\CreditCardDataProviderInterface;
 
-class FinanceAdsDataProvider extends BaseDataProvider implements CreditCardDataProvider
+class FinanceAdsDataProviderInterface extends BaseDataProvider implements CreditCardDataProviderInterface
 {
 
     public function fetchCreditCardData(): array

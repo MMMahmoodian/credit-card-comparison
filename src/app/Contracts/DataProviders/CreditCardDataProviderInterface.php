@@ -2,7 +2,7 @@
 
 namespace App\Contracts\DataProviders;
 
-interface CreditCardDataProvider
+interface CreditCardDataProviderInterface
 {
     public function fetchCreditCardData(): array;
 }
