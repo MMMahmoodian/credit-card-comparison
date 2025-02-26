@@ -27,3 +27,4 @@ To fetch the credit cards data from the 3rd party API, you need to run the follo
 ```shell
 docker compose -f docker-compose.local.yml exec app php artisan credit-card:update
 ```
+After running this command, you can access the landing page on `http://localhost:8000`.
