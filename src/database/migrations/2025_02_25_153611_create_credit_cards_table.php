@@ -25,10 +25,10 @@ return new class extends Migration
             $table->double('annual_charges');
             $table->double('annual_transaction_costs');
             // special offers
-            $table->enum('has_bonus_program', array_column(BooleanEnum::cases(), 'value'))->default(0);
-            $table->enum('has_additional_insurance', array_column(BooleanEnum::cases(), 'value'))->default(0);
-            $table->enum('has_discount_on_partners', array_column(BooleanEnum::cases(), 'value'))->default(0);
-            $table->enum('has_additional_offers', array_column(BooleanEnum::cases(), 'value'))->default(0);
+            $table->tinyInteger('has_bonus_program')->default(0);
+            $table->tinyInteger('has_additional_insurance')->default(0);
+            $table->tinyInteger('has_discount_on_partners')->default(0);
+            $table->tinyInteger('has_additional_offers')->default(0);
             $table->text('special_offers')->nullable();
             // participation
             $table->double('participation_fee');
@@ -46,7 +46,7 @@ return new class extends Migration
             $table->double('saving_interest_rate');
             $table->double('debt_interest_rate');
 
-            $table->enum('card_type', array_column(CardType::cases(), 'value'));
+            $table->tinyInteger('card_type');
 
             $table->timestamps();
         });
