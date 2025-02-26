@@ -6,6 +6,7 @@ use App\Contracts\Database\CreditCardRepositoryInterface;
 use App\Enums\BooleanEnum;
 use App\Models\Bank;
 use App\Models\CreditCard;
+use Illuminate\Support\Collection;
 
 class CreditCardRepository implements CreditCardRepositoryInterface
 {
@@ -25,5 +26,16 @@ class CreditCardRepository implements CreditCardRepositoryInterface
         foreach ($data as $item) {
             $this->storeOrUpdate($item);
         }
+    }
+
+    public function index(array $inputs)
+    {
+        $sort = $inputs['sort'] ?? null;
+        $sortDirection = $inputs['sort_direction'] ?? 'asc';
+
+        return CreditCard::query()->with('bank')
+            ->when($sort, function ($query) use ($sort, $sortDirection) {
+                $query->orderBy($sort, $sortDirection);
+            })->get();
     }
 }
