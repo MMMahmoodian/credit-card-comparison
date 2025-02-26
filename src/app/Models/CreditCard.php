@@ -17,4 +17,9 @@ class CreditCard extends Model
         'has_additional_offers' => BooleanEnum::class,
         'card_type' => CardType::class,
     ];
+
+    public function bank()
+    {
+        return $this->belongsTo(Bank::class);
+    }
 }
