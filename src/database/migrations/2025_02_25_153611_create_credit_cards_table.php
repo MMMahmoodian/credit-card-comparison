@@ -14,21 +14,22 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('credit_cards', function (Blueprint $table) {
-            $table->id();
+            $table->unsignedBigInteger('id');
             $table->string('title');
             $table->string('link');
             $table->string('logo');
             $table->unsignedBigInteger('bank_id');
-            $table->double('rating');
+            $table->text('extra_info')->nullable();
+            $table->double('rating')->nullable();
             $table->double('TAE');
             $table->double('annual_charges');
             $table->double('annual_transaction_costs');
             // special offers
-            $table->enum('has_bonus_program', BooleanEnum::cases());
-            $table->enum('has_additional_insurance', BooleanEnum::cases());
-            $table->enum('has_discount_on_partners', BooleanEnum::cases());
-            $table->enum('has_additional_offers', BooleanEnum::cases());
-            $table->json('special_offers');
+            $table->enum('has_bonus_program', array_column(BooleanEnum::cases(), 'value'))->default(0);
+            $table->enum('has_additional_insurance', array_column(BooleanEnum::cases(), 'value'))->default(0);
+            $table->enum('has_discount_on_partners', array_column(BooleanEnum::cases(), 'value'))->default(0);
+            $table->enum('has_additional_offers', array_column(BooleanEnum::cases(), 'value'))->default(0);
+            $table->text('special_offers')->nullable();
             // participation
             $table->double('participation_fee');
             $table->double('participation_cost');
@@ -45,7 +46,7 @@ return new class extends Migration
             $table->double('saving_interest_rate');
             $table->double('debt_interest_rate');
 
-            $table->enum('card_type', CardType::cases());
+            $table->enum('card_type', array_column(CardType::cases(), 'value'));
 
             $table->timestamps();
         });
