@@ -2,7 +2,7 @@
 
 namespace App\Contracts\Database;
 
-interface CreditCardRepository
+interface CreditCardRepositoryInterface
 {
     public function storeOrUpdate(array $data): void;
     public function storeOrUpdateBulk(array $data): void;
