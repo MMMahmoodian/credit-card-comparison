@@ -29,6 +29,12 @@ docker compose -f docker-compose.local.yml exec app php artisan credit-card:upda
 ```
 After running this command, you can access the landing page on `http://localhost:8000`.
 
+## Bonus
+- I didnt understand what remarks means and how I can determine something is positive or negative so I didnt implement it.
+- I implemented the sort and ordering feature in the comparison page. You can sort the credit cards based on their features.
+- I implemented the persisted editing feature. You can edit the credit card features and the changes will be saved in the database.
+you can access it from back-office page at http://localhost:8000/back-office/edits.
+
 ## FAQ
 **Q: Why did you choose Docker?**<br>
 A: Docker is a great tool for building and running applications in a consistent environment. 
