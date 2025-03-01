@@ -14,6 +14,10 @@ class CreditCardResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        if ($this->edit()->exists()) {
+            $this->applyEditedFields();
+        }
+
         return [
             'title' => $this->title,
             'logo' => $this->logo,
@@ -41,6 +45,14 @@ class CreditCardResource extends JsonResource
         array_walk($mapping, function(&$value) { $value = '/'.rtrim($value, ';').'(?!;)/'; });
 
         return preg_replace(array_values($mapping), array_keys($mapping), $input);
+    }
+
+    private function applyEditedFields()
+    {
+        $edits = $this->edit->edits;
+        foreach ($edits as $field => $value) {
+            $this->$field = $value;
+        }
     }
 
 }
