@@ -19,6 +19,7 @@ class CreditCardResource extends JsonResource
         }
 
         return [
+            'id' => $this->id,
             'title' => $this->title,
             'logo' => $this->logo,
             'bank_name' => $this->bank->name,
