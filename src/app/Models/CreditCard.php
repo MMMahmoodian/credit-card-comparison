@@ -22,4 +22,9 @@ class CreditCard extends Model
     {
         return $this->belongsTo(Bank::class);
     }
+
+    public function edit()
+    {
+        return $this->morphOne(Edit::class, 'editable');
+    }
 }
